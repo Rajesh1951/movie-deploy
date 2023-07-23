@@ -6,24 +6,12 @@ const app = express();
 app.use(express.json());
 const router = require('./routes/appRoutes')
 const corsOptions = {
-  origin: 'http://localhost:3000', 
+  origin: 'http://localhost:3000',
 };
 
 app.use(cors(corsOptions));
 app.use(router);
 app.get('/', (req, res) => {
-  const datafun = async () => {
-    const url = 'https://api.themoviedb.org/3/movie/popular';
-    const { data } = await axios.get(url, {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${process.env.TOKEN}`
-      }
-    })
-    console.log(data)
-  }
-  // datafun()
   res.send("Hi from express");
 })
 

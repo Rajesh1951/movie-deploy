@@ -17,7 +17,6 @@ function Home() {
   function fetchTrending() {
     const fetch = async () => {
       const { data } = await axios.get(`${backend}/trending`)
-      console.log(data.results)
       setTrendingList(data.results)
     }
     fetch();

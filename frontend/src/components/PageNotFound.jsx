@@ -9,15 +9,15 @@ const PageNotFound = () => {
       align="center"
       justify="center"
       height="100vh"
-      bg="gray.50"
+      bg="gray"
     >
-      <Heading fontSize="6xl" color="red.500">
+      <Heading fontSize="6xl" color="red">
         404
       </Heading>
       <Text fontSize="2xl" fontWeight="bold" mt={4}>
         Oops! Page not found.
       </Text>
-      <Text fontSize="lg" color="gray.500" mt={2}>
+      <Text fontSize="lg" color="gray" mt={2}>
         The page you are looking for might have been removed or does not exist.
       </Text>
       <Link to='/'>

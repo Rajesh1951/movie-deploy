@@ -8,13 +8,19 @@ function Search() {
   function handleSearch() {
     if (search === '') {
       alert('Search cannot be empty')
+      return;
     }
     navigate(`/search?query=${search}`)
+  }
+  function handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      handleSearch()
+    }
   }
   return (
     <Flex id="search-box"
       bgImage="url('https://png.pngtree.com/thumb_back/fh260/background/20191113/pngtree-blue-movie-film-texture-background-image_321897.jpg')"
-      h='30vh'
+      h='20vh'
       justifyContent='center'
       alignItems='center'
     >
@@ -25,6 +31,8 @@ function Search() {
         placeholder='Search for a movie...'
         onChange={(e) => setSearch(e.target.value)}
         required
+        zIndex={1}
+        onKeyDown={handleKeyDown}
       />
       <Button colorScheme='blue' leftIcon={<SearchIcon />}
         onClick={(e) => handleSearch(e)}

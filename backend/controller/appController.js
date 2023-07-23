@@ -27,7 +27,7 @@ module.exports.getPopular = async (req, res) => {
   res.json(data)
 }
 module.exports.getSearch = async (req, res) => {
-  const searchTerm = req.query.query;
+  const searchTerm = req.params.query;
   console.log(searchTerm)
   const url = `https://api.themoviedb.org/3/search/movie?query=${searchTerm}`;
   const options = {

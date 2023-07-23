@@ -23,11 +23,11 @@ function Home() {
     fetch();
   }
   useEffect(() => {
-    fetchPopular();
     fetchTrending();
+    fetchPopular();
   }, [])
   return (
-    <div>
+    <Box >
       <div id="container">
         <Search />
         <Box maxW='80vw' m='auto auto'>
@@ -35,7 +35,7 @@ function Home() {
           <Box id="trending" overflowX='auto' sx={{ scrollbarWidth: 'none', '::-webkit-scrollbar': { display: 'none' } }}>
             <Flex direction='row'>
               {trendingList.map((e) =>
-                <MovieCard data={e} />
+                <MovieCard key={e.id} data={e} />
               )}
             </Flex>
           </Box>
@@ -45,13 +45,13 @@ function Home() {
           <Box id="popular" overflowX='auto' sx={{ scrollbarWidth: 'none', '::-webkit-scrollbar': { display: 'none' } }}>
             <Flex direction='row'>
               {popularList.map((e) =>
-                <MovieCard data={e} />
+                <MovieCard key={e.id} data={e} />
               )}
             </Flex>
           </Box>
         </Box>
       </div>
-    </div>
+    </Box>
   )
 }
 

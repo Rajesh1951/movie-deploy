@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 const router = require('./routes/appRoutes')
 const corsOptions = {
-  origin: "*",
+  origin: "https://movie-search-assignment-client.vercel.app",
   methods: ["GET"],
   credentials: true
 };

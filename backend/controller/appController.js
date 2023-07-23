@@ -10,7 +10,7 @@ module.exports.getTrending = async (req, res) => {
     }
   };
   const { data } = await axios.get(url, options)
-  console.log(data)
+  res.json(data)
 }
 
 module.exports.getPopular = async (req, res) => {
@@ -20,10 +20,11 @@ module.exports.getPopular = async (req, res) => {
     headers: {
       accept: 'application/json',
       Authorization: `Bearer ${process.env.TOKEN}`
-    }
+      , mode: 'cors'
+    },
   };
   const { data } = await axios.get(url, options)
-  console.log(data)
+  res.json(data)
 }
 module.exports.getSearch = async (req, res) => {
   const searchTerm = req.query.query;
@@ -37,10 +38,27 @@ module.exports.getSearch = async (req, res) => {
     }
   };
   const { data } = await axios.get(url, options)
-  console.log(data)
+  res.json(data)
 }
 
-
+module.exports.getDetails = async (req, res) => {
+  const movieId = req.params.id;
+  try {
+    const url = `https://api.themoviedb.org/3/movie/${movieId}`;
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.TOKEN}`
+      }
+    };
+    const { data } = await axios.get(url, options)
+    res.json(data)
+  }
+  catch (error) {
+    res.json(error);
+  }
+}
 // response
 /*
 {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Badge, Heading, Card, Stack, Image, Text, CardBody, HStack, Button, Box } from '@chakra-ui/react'
+import { Badge, Heading, Card, Stack, Image, Text, CardBody, HStack, Box } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 function MovieCard({ data }) {
   return (
@@ -21,7 +21,7 @@ function MovieCard({ data }) {
             <Stack mt='0' spacing='2'>
               <Heading size={['sm', 'md']}>{data.original_title}</Heading>
               <HStack>
-              <Text>{`${data.release_date.slice(8)}-${data.release_date.slice(5,7)}-${data.release_date.slice(0,4)}`}</Text>                
+                <Text>{`${data.release_date.slice(8)}-${data.release_date.slice(5, 7)}-${data.release_date.slice(0, 4)}`}</Text>
               </HStack>
             </Stack>
           </CardBody>

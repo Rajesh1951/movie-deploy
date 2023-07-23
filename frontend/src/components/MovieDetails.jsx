@@ -4,7 +4,7 @@ import { Box, Image, HStack, VStack, Heading, Text, Badge, Link } from '@chakra-
 import axios from 'axios'
 function MovieDetails() {
   const { id } = useParams();
-  const backend = 'http://localhost:400'
+  const backend = 'https://movie-search-assignment-api.vercel.app'
   const [data, setData] = useState({});
   const fetch = async () => {
     const { data } = await axios.get(`${backend}/details/${id}`);

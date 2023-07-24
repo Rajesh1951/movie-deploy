@@ -4,7 +4,7 @@ import axios from 'axios'
 import MovieCard from './MovieCard'
 import { Box, Flex, Heading } from "@chakra-ui/react"
 function Home() {
-  const backend = 'http://localhost:400'
+  const backend = 'https://movie-search-cb0s.onrender.com'
   const [popularList, setPopularList] = useState([])
   function fetchPopular() {
     const fetch = async () => {

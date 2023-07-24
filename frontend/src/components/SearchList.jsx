@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import SearchCard from './SearchCard';
 import { SearchIcon } from "@chakra-ui/icons"
 function SearchList() {
-  const backend = 'http://localhost:400'
+  const backend = 'https://movie-search-cb0s.onrender.com'
   const location = useLocation();
   const navigate = useNavigate();
   const searchQuery = new URLSearchParams(location.search)

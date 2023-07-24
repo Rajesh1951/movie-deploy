@@ -9,8 +9,13 @@ module.exports.getTrending = async (req, res) => {
       Authorization: `Bearer ${process.env.TOKEN}`
     }
   };
-  const { data } = await axios.get(url, options)
-  res.json(data)
+  try {
+    const { data } = await axios.get(url, options)
+    res.json(data)
+  }
+  catch (error) {
+    res.json(error)
+  }
 }
 
 module.exports.getPopular = async (req, res) => {
@@ -23,13 +28,19 @@ module.exports.getPopular = async (req, res) => {
       , mode: 'cors'
     },
   };
-  const { data } = await axios.get(url, options)
-  res.json(data)
+  try {
+    const { data } = await axios.get(url, options)
+    res.json(data)
+  }
+  catch (error) {
+    res.json(error)
+  }
 }
 module.exports.getSearch = async (req, res) => {
-  const searchTerm = req.params.query;
-  console.log(searchTerm)
-  const url = `https://api.themoviedb.org/3/search/movie?query=${searchTerm}`;
+  const searchTerm = req.query.query;
+  const page = req.query.page;
+  console.log(searchTerm, page);
+  const url = `https://api.themoviedb.org/3/search/movie?query=${searchTerm}&page=${page}`;
   const options = {
     method: 'GET',
     headers: {
@@ -37,8 +48,13 @@ module.exports.getSearch = async (req, res) => {
       Authorization: `Bearer ${process.env.TOKEN}`
     }
   };
-  const { data } = await axios.get(url, options)
-  res.json(data)
+  try {
+    const { data } = await axios.get(url, options)
+    res.json(data)
+  }
+  catch (error) {
+    res.json(error)
+  }
 }
 
 module.exports.getDetails = async (req, res) => {

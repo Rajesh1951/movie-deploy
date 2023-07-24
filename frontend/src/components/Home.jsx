@@ -4,7 +4,7 @@ import axios from 'axios'
 import MovieCard from './MovieCard'
 import { Box, Flex, Heading } from "@chakra-ui/react"
 function Home() {
-  const backend = 'https://movie-search-assignment-api.vercel.app'
+  const backend = 'http://localhost:400'
   const [popularList, setPopularList] = useState([])
   function fetchPopular() {
     const fetch = async () => {

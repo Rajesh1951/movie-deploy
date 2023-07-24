@@ -5,29 +5,60 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import SearchCard from './SearchCard';
 import { SearchIcon } from "@chakra-ui/icons"
 function SearchList() {
-  const backend = 'https://movie-search-assignment-api.vercel.app'
+  const backend = 'http://localhost:400'
   const location = useLocation();
+  const navigate = useNavigate();
   const searchQuery = new URLSearchParams(location.search)
   const query = searchQuery.get('query')
   const [flag, setFlag] = useState(false);
+  const [end, setEnd] = useState(false);
   const [search, setSearch] = useState(query);
+  const [pageNo, setPageNo] = useState(1);
   const [list, setList] = useState([])
   const fetch = async (query) => {
-    const { data } = await axios.get(`${backend}/search/${query}`)
-    if (data.results.length === 0) {
+    const { data } = await axios.get(`${backend}/search?query=${query}&page=${pageNo}`)
+    if (pageNo === 1 && data.results.length === 0) {
       setFlag(true);
     }
-    setList(data.results)
+    if (data.results.length === 0) {
+      setEnd(true);
+    }
+    if (pageNo === 1) {
+      setList(data.results)
+    }
+    else {
+      setList(prev => [...prev, ...data.results])
+    }
   }
   useEffect(() => {
     fetch(query)
+  }, [pageNo])
+  useEffect(() => {
+    const handleScroll = () => {
+      const reachedBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight;
+
+      if (reachedBottom && !end) {
+        setPageNo(prev => prev + 1);
+      }
+
+    }
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
   }, [])
+
   function handleSearch() {
     if (search === '') {
       alert('Search cannot be empty')
       return;
     }
     setFlag(false);
+    setEnd(false);
+    setList([])
+    setPageNo(1)
+    navigate(`/search?query=${search}`)
     fetch(search)
   }
   const handleKeyPress = (event) => {
@@ -36,7 +67,7 @@ function SearchList() {
     }
   };
   if (list.length === 0 && !flag) {
-    return "loading..."
+    return <Text fontSize='2xl' textAlign='center'>Loading...</Text>
   }
   return (
     <div>
@@ -57,7 +88,7 @@ function SearchList() {
       </Box>
       <VStack>
         {(flag) ?
-          <Text>Movie you are looking for is not available. Try searching for other movies or check spelling.</Text>
+          <Text fontSize='2xl'>Movie you are looking for is not available. Try searching for other movies or check spelling.</Text>
           : list.map((e) =>
             <SearchCard key={e.id} data={e} />
           )}

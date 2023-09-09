@@ -4,7 +4,7 @@ import { Box, Image, HStack, VStack, Heading, Text, Badge, Link, Flex } from '@c
 import axios from 'axios'
 function MovieDetails() {
   const { id } = useParams();
-  const backend = 'https://movie-search-cb0s.onrender.com'
+  const backend = 'https://movie-deploy-api.vercel.app'
   const [data, setData] = useState({});
   const fetch = async () => {
     const { data } = await axios.get(`${backend}/details/${id}`);

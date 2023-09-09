@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { Input, Button, Box, Text, Image, Stack, Card, CardBody, Heading, HStack } from "@chakra-ui/react"
-import { Link, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { Box, Text, Image, Stack, Card, CardBody, Heading, HStack } from "@chakra-ui/react"
+import { Link } from 'react-router-dom'
 
 function SearchCard({ data }) {
   return (
@@ -28,7 +28,7 @@ function SearchCard({ data }) {
               </Text>
               <HStack>
                 <Text as='b'>Release date:</Text>
-                <Text>{`${data.release_date.slice(8)}-${data.release_date.slice(5,7)}-${data.release_date.slice(0,4)}`}</Text>
+                <Text>{`${data.release_date.slice(8)}-${data.release_date.slice(5, 7)}-${data.release_date.slice(0, 4)}`}</Text>
               </HStack>
             </CardBody>
           </Stack>
